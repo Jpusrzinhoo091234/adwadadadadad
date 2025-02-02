@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Angels Store - Sua loja de produtos celestiais">
+    <meta name="keywords" content="brinquedos, doces, jogos, anime fighters, loja">
+    <title>Angels Store - Produtos Celestiais</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header-nav-container">
+        <header class="bounce-in">
+            <h1>👼 Angels Store ✨</h1>
+            <p class="subtitle wobble">Produtos celestiais para iluminar seu dia! ⭐</p>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar produtos..." aria-label="Buscar produtos">
+                <button id="search-btn" aria-label="Buscar">🔍</button>
+            </div>
+            <nav aria-label="Categorias de produtos">
+                <button class="category-btn active" data-category="todos" aria-pressed="true">✨ Todos</button>
+                <button class="category-btn" data-category="free_fire" aria-pressed="false">🎮 Free Fire</button>
+                <button class="category-btn" data-category="anime_fighters" aria-pressed="false">⚔️ Anime Fighters</button>
+            </nav>
+        </header>
+    </div>
+    
+    <button class="header-toggle" id="headerToggle" aria-label="Alternar visibilidade do cabeçalho">✖️</button>
+
+    <main>
+        <div class="products-grid" id="products-container" role="grid" aria-label="Lista de produtos">
+            <!-- Produtos serão inseridos via JavaScript -->
+        </div>
+    </main>
+
+    <div class="cart-overlay" id="cart-overlay" role="presentation"></div>
+
+    <div id="cart-popup" class="cart-popup" role="dialog" aria-label="Carrinho de compras">
+        <button class="cart-close" id="cart-close" aria-label="Fechar carrinho">✖️</button>
+        <h2>🛒 Seu Carrinho</h2>
+        <div id="cart-items" class="cart-items" role="list"></div>
+        <div class="cart-total">
+            <p>Total do Pedido:</p>
+            <div class="cart-total-value">R$ <span id="cart-total">0.00</span></div>
+            <button id="checkout-btn" class="checkout-btn" aria-label="Finalizar pedido no WhatsApp">
+                Finalizar no WhatsApp 📱
+            </button>
+        </div>
+    </div>
+
+    <button id="cart-toggle" class="cart-toggle" aria-label="Abrir carrinho">
+        🛒 <span class="cart-count" id="cart-count" aria-live="polite">0</span>
+    </button>
+
+    <div class="preview-modal" id="preview-modal" role="dialog" aria-label="Visualização do produto">
+        <button class="preview-close" id="preview-close" aria-label="Fechar visualização">✖️</button>
+        <div class="preview-content">
+            <!-- Conteúdo será preenchido via JavaScript -->
+        </div>
+    </div>
+    <div class="preview-overlay" id="preview-overlay" role="presentation"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

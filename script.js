@@ -178,7 +178,7 @@ const products = [
         id: 40,
         name: "OPORTUNIDADE ÚNICA: PASSE BOOYAH PREMIUM FREE FIRE",
         emoji: "👑",
-        price: 5.50,
+        price: 7.50,
         category: "free_fire",
         description: `MELHOR PREÇO DO GGMAX 🤑
 
@@ -196,7 +196,7 @@ const products = [
         id: 41,
         name: "LEVEL 2 +299 DIMAS SEM SKIN +TROCA NICK",
         emoji: "🟠",
-        price: 6.00,
+        price: 8.00,
         category: "free_fire",
         description: "( 834 em estoque )"
     },
@@ -204,7 +204,7 @@ const products = [
         id: 42,
         name: "LEVEL 2 +300 DIMAS +SKIN CAVEIRA +TROCA NICK",
         emoji: "🟡",
-        price: 8.00,
+        price: 10.00,
         category: "free_fire",
         description: "( 908 em estoque )"
     },
@@ -212,7 +212,7 @@ const products = [
         id: 43,
         name: "10 CONTAS LEVEL 15 +20K OURO SEM SKIN +TROCA NICK",
         emoji: "🟣",
-        price: 50.00,
+        price: 52.00,
         category: "free_fire",
         description: "( 967 em estoque )"
     },
@@ -220,7 +220,7 @@ const products = [
         id: 44,
         name: "LEVEL 15 +300 DIMAS + SKIN REI CAVEIRA +TROCA NICK",
         emoji: "🟢",
-        price: 15.00,
+        price: 17.00,
         category: "free_fire",
         description: "( 747 em estoque )"
     },
@@ -228,7 +228,7 @@ const products = [
         id: 45,
         name: "LEVEL 15 +299 DIMAS +20K OURO SEM SKIN",
         emoji: "⚪",
-        price: 13.00,
+        price: 15.00,
         category: "free_fire",
         description: "( 893 em estoque )"
     },
@@ -236,7 +236,7 @@ const products = [
         id: 46,
         name: "LEVEL 15 +49 DIMAS +20K OURO SEM SKIN",
         emoji: "🟣",
-        price: 5.50,
+        price: 7.50,
         category: "free_fire",
         description: "( 458 em estoque )"
     },
@@ -244,7 +244,7 @@ const products = [
         id: 47,
         name: "LEVEL 15 +1000 DIMAS +20K OURO",
         emoji: "🔵",
-        price: 38.90,
+        price: 40.90,
         category: "free_fire",
         description: "( 458 em estoque )"
     },
@@ -421,31 +421,49 @@ function validateQuantity(input) {
 }
 
 function addToCart(productId) {
+    const userManager = new UserManager();
     const product = products.find(p => p.id === productId);
+    
     if (product) {
         const quantityInput = document.querySelector(`input[data-product-id="${productId}"]`);
-        const quantity = parseInt(quantityInput.value) || 1;
+        const quantity = parseInt(quantityInput?.value || 1);
         
-        // Verifica se o produto já está no carrinho
-        const existingItem = cart.find(item => item.product.id === productId);
-        if (existingItem) {
-            existingItem.quantity += quantity;
+        // Se não estiver logado, redireciona para o login
+        if (!userManager.currentUser) {
+            if (confirm('Você precisa fazer login para comprar. Deseja fazer login agora?')) {
+                window.location.href = 'login.html';
+            }
+            return;
+        }
+
+        // Adiciona ao carrinho
+        const existingProduct = cart.find(item => item.product.id === productId);
+        if (existingProduct) {
+            existingProduct.quantity += quantity;
         } else {
             cart.push({ product, quantity });
         }
         
+        // Salva a compra no perfil do usuário
+        userManager.addPurchase(userManager.currentUser.username, {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            category: product.category
+        });
+        
         updateCartCount();
         
         // Adiciona feedback visual ao botão
-        const button = document.querySelector(`button[onclick*="addToCart(${productId})"]`);
-        button.classList.add('added');
-        button.textContent = `Adicionado! (${quantity}) ✓`;
-        
-        setTimeout(() => {
-            button.classList.remove('added');
-            button.textContent = 'Adicionar ao Carrinho 🛒';
-            quantityInput.value = 1;
-        }, 1000);
+        const button = document.querySelector(`button[onclick="addToCart(${productId})"]`);
+        if (button) {
+            button.classList.add('added-to-cart');
+            setTimeout(() => {
+                button.classList.remove('added-to-cart');
+            }, 1000);
+        }
+
+        alert('Produto adicionado com sucesso! Você pode ver suas compras no seu perfil.');
     }
 }
 
@@ -619,24 +637,30 @@ function removeFromCart(index) {
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
+    // Mostrar produtos primeiro
+    displayProducts('todos');
+    
     // Configurar categorias
     document.querySelectorAll('.category-btn').forEach(button => {
         button.addEventListener('click', () => {
-            document.querySelectorAll('.category-btn').forEach(btn => 
-                btn.classList.remove('active')
-            );
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             displayProducts(button.dataset.category);
         });
     });
 
-    // Configurar botões
-    document.getElementById('cart-close').addEventListener('click', hideCartPopup);
-    document.getElementById('cart-overlay').addEventListener('click', hideCartPopup);
-    document.getElementById('cart-toggle').addEventListener('click', showCartPopup);
-    
-    // Iniciar com todos os produtos
-    displayProducts('todos');
+    // Verificar login e adicionar informações do usuário se estiver logado
+    const userManager = new UserManager();
+    if (userManager.currentUser) {
+        const header = document.querySelector('header');
+        const userInfo = document.createElement('div');
+        userInfo.className = 'user-info';
+        userInfo.innerHTML = `
+            <span>Olá, ${userManager.currentUser.username}!</span>
+            <a href="profile.html" class="profile-btn">👤 Perfil</a>
+        `;
+        header.appendChild(userInfo);
+    }
 });
 
 // Função para mostrar preview do produto

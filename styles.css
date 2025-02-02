@@ -594,6 +594,38 @@ main {
     animation: spin 1s linear infinite;
 }
 
+/* Estilos do componente de usuário */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.user-info span {
+    color: white;
+    font-weight: bold;
+}
+
+.profile-btn {
+    padding: 0.5rem 1rem;
+    background: linear-gradient(45deg, #00ff87, #60efff);
+    border: none;
+    border-radius: 10px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.profile-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 135, 0.4);
+}
+
 @media (max-width: 768px) {
     /* Header e navegação */
     header {

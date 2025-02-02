@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - GG Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box" id="loginBox">
+            <h2>🎮 Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginUsername">Nome de Usuário</label>
+                    <input type="text" id="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Senha</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="auth-btn">Entrar</button>
+            </form>
+            <p>Não tem uma conta? <a href="#" id="showRegister">Cadastre-se</a></p>
+        </div>
+
+        <div class="auth-box" id="registerBox" style="display: none;">
+            <h2>📝 Cadastro</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Nome</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerUsername">Nome de Usuário</label>
+                    <input type="text" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Senha</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirmar Senha</label>
+                    <input type="password" id="registerConfirmPassword" required>
+                </div>
+                <button type="submit" class="auth-btn">Cadastrar</button>
+            </form>
+            <p>Já tem uma conta? <a href="#" id="showLogin">Faça login</a></p>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>

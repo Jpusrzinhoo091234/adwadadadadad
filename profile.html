@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - GG Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <img id="profileAvatar" src="default-avatar.png" alt="Avatar">
+                <button id="changeAvatar" class="change-avatar-btn">📸</button>
+            </div>
+            <div class="profile-info">
+                <h1 id="profileName">Carregando...</h1>
+                <p id="profileEmail">carregando@email.com</p>
+            </div>
+        </div>
+
+        <div class="profile-stats">
+            <div class="stat-box">
+                <h3>Total Gasto</h3>
+                <p id="totalSpent">R$ 0,00</p>
+            </div>
+            <div class="stat-box">
+                <h3>Compras Realizadas</h3>
+                <p id="totalPurchases">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>Último Acesso</h3>
+                <p id="lastAccess">Nunca</p>
+            </div>
+        </div>
+
+        <div class="profile-sections">
+            <div class="section-tabs">
+                <button class="tab-btn active" data-tab="purchases">Compras</button>
+                <button class="tab-btn" data-tab="settings">Configurações</button>
+            </div>
+
+            <div class="tab-content" id="purchasesTab">
+                <h2>Histórico de Compras</h2>
+                <div class="purchases-list" id="purchasesList">
+                    <!-- Será preenchido via JavaScript -->
+                </div>
+            </div>
+
+            <div class="tab-content" id="settingsTab" style="display: none;">
+                <h2>Configurações da Conta</h2>
+                <form id="settingsForm">
+                    <div class="form-group">
+                        <label for="changeName">Nome</label>
+                        <input type="text" id="changeName">
+                    </div>
+                    <div class="form-group">
+                        <label for="changePassword">Nova Senha</label>
+                        <input type="password" id="changePassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmNewPassword">Confirmar Nova Senha</label>
+                        <input type="password" id="confirmNewPassword">
+                    </div>
+                    <button type="submit" class="save-btn">Salvar Alterações</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <a href="index.html" class="action-btn">🏠 Voltar à Loja</a>
+            <button id="logoutBtn" class="action-btn logout">🚪 Sair</button>
+        </div>
+    </div>
+    <script src="profile.js"></script>
+</body>
+</html>

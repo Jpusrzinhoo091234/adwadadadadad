@@ -7,6 +7,225 @@
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="auth.css">
+    <style>
+        .profile-container {
+            padding: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-header {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+            position: relative;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffd93d;
+        }
+
+        .change-avatar-btn {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: #ffd93d;
+            color: #1a1a1a;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-info h1 {
+            color: white;
+            margin: 0;
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .profile-info p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0.5rem 0;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            color: white;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .stat-box p {
+            color: #ffd93d;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0.5rem 0 0;
+        }
+
+        .profile-sections {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            scrollbar-width: none;
+        }
+
+        .section-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.2rem;
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            white-space: nowrap;
+            min-height: 44px;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            color: #1a1a1a;
+            font-weight: bold;
+        }
+
+        .purchases-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .purchase-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1rem;
+        }
+
+        .purchase-item .details {
+            margin-bottom: 0.5rem;
+        }
+
+        .purchase-item h4 {
+            color: white;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .purchase-item small {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .purchase-item .price {
+            color: #ffd93d;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            color: #1a1a1a;
+        }
+
+        .action-btn.logout {
+            background: #ff4757;
+            color: white;
+        }
+
+        .action-btn:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 480px) {
+            .profile-header {
+                padding: 1rem;
+            }
+
+            .profile-avatar {
+                width: 100px;
+                height: 100px;
+            }
+
+            .profile-info h1 {
+                font-size: 1.5rem;
+            }
+
+            .stat-box h3 {
+                font-size: 0.9rem;
+            }
+
+            .stat-box p {
+                font-size: 1.3rem;
+            }
+
+            .tab-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="profile-container">
@@ -17,7 +236,7 @@
             </div>
             <div class="profile-info">
                 <h1 id="profileName">Carregando...</h1>
-                <p id="profileEmail">carregando@email.com</p>
+                <p id="profileUsername">@username</p>
             </div>
         </div>
 
@@ -27,7 +246,7 @@
                 <p id="totalSpent">R$ 0,00</p>
             </div>
             <div class="stat-box">
-                <h3>Compras Realizadas</h3>
+                <h3>Compras</h3>
                 <p id="totalPurchases">0</p>
             </div>
             <div class="stat-box">
@@ -43,18 +262,16 @@
             </div>
 
             <div class="tab-content" id="purchasesTab">
-                <h2>Histórico de Compras</h2>
                 <div class="purchases-list" id="purchasesList">
                     <!-- Será preenchido via JavaScript -->
                 </div>
             </div>
 
             <div class="tab-content" id="settingsTab" style="display: none;">
-                <h2>Configurações da Conta</h2>
                 <form id="settingsForm">
                     <div class="form-group">
-                        <label for="changeName">Nome</label>
-                        <input type="text" id="changeName">
+                        <label for="changeUsername">Nome de Usuário</label>
+                        <input type="text" id="changeUsername">
                     </div>
                     <div class="form-group">
                         <label for="changePassword">Nova Senha</label>
@@ -64,7 +281,7 @@
                         <label for="confirmNewPassword">Confirmar Nova Senha</label>
                         <input type="password" id="confirmNewPassword">
                     </div>
-                    <button type="submit" class="save-btn">Salvar Alterações</button>
+                    <button type="submit" class="auth-btn">Salvar Alterações</button>
                 </form>
             </div>
         </div>
@@ -74,6 +291,7 @@
             <button id="logoutBtn" class="action-btn logout">🚪 Sair</button>
         </div>
     </div>
+    <script src="auth.js"></script>
     <script src="profile.js"></script>
 </body>
 </html>

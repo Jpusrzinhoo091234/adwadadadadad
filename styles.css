@@ -5,8 +5,8 @@
 }
 
 body {
+    padding-top: 65px; /* Reduzindo ainda mais o espaço do header */
     margin: 0;
-    padding: 0;
     font-family: 'Comic Neue', cursive;
     background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
     color: white;
@@ -14,65 +14,119 @@ body {
     overflow-x: hidden;
 }
 
-/* Header e navegação mobile-friendly */
+/* Header mais compacto e integrado */
 .header-nav-container {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
     background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
-    padding: 1rem;
+    padding: 0.25rem 0.5rem;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Layout em grid para melhor organização */
+.header-content {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.5rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 header {
     text-align: center;
-    padding: 0.5rem;
+    display: flex;
+    align-items: center;
 }
 
 header h1 {
-    font-size: 2rem;
+    font-size: 1.25rem;
     margin: 0;
-    padding: 0.5rem;
     background: linear-gradient(45deg, #ff6b6b, #ffd93d);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1;
 }
 
-.subtitle {
-    font-size: 1rem;
-    margin: 0.5rem 0;
-    color: #ffd93d;
+/* Container para busca e categorias */
+.search-and-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
-/* Barra de pesquisa otimizada para mobile */
+/* Barra de pesquisa otimizada */
 .search-container {
     display: flex;
-    gap: 0.5rem;
-    margin: 1rem auto;
-    max-width: 90%;
+    gap: 0.25rem;
+    align-items: center;
 }
 
 .search-container input {
     flex: 1;
-    padding: 0.8rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 15px;
     border: none;
-    border-radius: 25px;
     background: rgba(255, 255, 255, 0.1);
     color: white;
-    font-size: 1rem;
-    min-height: 44px;
+    font-size: 0.85rem;
+    height: 28px;
+    min-width: 200px;
 }
 
-.search-container button {
-    width: 44px;
-    height: 44px;
+/* Botões de categoria mais compactos */
+.category-buttons {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 28px;
+    display: flex;
+    align-items: center;
+}
+
+.category-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.category-btn.active {
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    color: #1a1a1a;
+}
+
+/* Ajuste do botão de busca */
+.search-btn {
+    height: 28px;
+    width: 28px;
+    padding: 0;
     border: none;
     border-radius: 50%;
     background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    font-size: 1.2rem;
+}
+
+/* Container para os produtos */
+.products-container {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 /* Navegação por categorias */
@@ -89,24 +143,6 @@ nav {
 
 nav::-webkit-scrollbar {
     display: none;
-}
-
-.category-btn {
-    padding: 0.8rem 1.2rem;
-    border: none;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    cursor: pointer;
-    white-space: nowrap;
-    min-height: 44px;
-    font-size: 0.9rem;
-}
-
-.category-btn.active {
-    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-    color: #1a1a1a;
-    font-weight: bold;
 }
 
 /* Grid de produtos responsivo */
@@ -206,6 +242,7 @@ nav::-webkit-scrollbar {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid white;
 }
 
 /* Modal do carrinho */
@@ -1448,5 +1485,73 @@ main {
 
     .section-container::after {
         font-size: 0.8rem;
+    }
+}
+
+/* Estilos para as ações do header */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cart-btn {
+    height: 32px;
+    width: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    font-size: 1.1rem;
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4757;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .header-content {
+        grid-template-columns: 1fr auto;
+        gap: 0.25rem;
+    }
+
+    header {
+        grid-column: 1 / -1;
+        justify-content: center;
+    }
+
+    .search-and-categories {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 110px;
+    }
+
+    .header-content {
+        gap: 0.15rem;
+    }
+
+    .search-container input {
+        min-width: 150px;
     }
 }

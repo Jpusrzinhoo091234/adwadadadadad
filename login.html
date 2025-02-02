@@ -3,51 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - GG Store</title>
+    <title>Login - Angels Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="auth.css">
 </head>
 <body>
     <div class="auth-container">
-        <div class="auth-box" id="loginBox">
-            <h2>🎮 Login</h2>
+        <!-- Mensagem de Boas-vindas -->
+        <div class="welcome-message" id="welcomeMessage">
+            <h1>👋 Bem-vindo à Angels Store!</h1>
+            <p>Para continuar, você precisa fazer login ou criar uma conta.</p>
+            <div class="welcome-buttons">
+                <button class="welcome-btn login-btn" onclick="showLogin()">Já tenho uma conta</button>
+                <button class="welcome-btn register-btn" onclick="showRegister()">Criar nova conta</button>
+            </div>
+        </div>
+
+        <!-- Box de Login -->
+        <div class="auth-box" id="loginBox" style="display: none;">
+            <div class="auth-header">
+                <h2>🎮 Login</h2>
+                <p class="auth-subtitle">Entre com sua conta para continuar</p>
+            </div>
             <form id="loginForm">
                 <div class="form-group">
                     <label for="loginUsername">Nome de Usuário</label>
-                    <input type="text" id="loginUsername" required>
+                    <input type="text" id="loginUsername" placeholder="Digite seu nome de usuário" required>
                 </div>
                 <div class="form-group">
                     <label for="loginPassword">Senha</label>
-                    <input type="password" id="loginPassword" required>
+                    <div class="password-input">
+                        <input type="password" id="loginPassword" placeholder="Digite sua senha" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('loginPassword')">👁️</button>
+                    </div>
                 </div>
                 <button type="submit" class="auth-btn">Entrar</button>
             </form>
-            <p>Não tem uma conta? <a href="#" id="showRegister">Cadastre-se</a></p>
+            <p class="auth-links">
+                Não tem uma conta? <a href="#" onclick="showRegister()">Cadastre-se</a>
+            </p>
+            <button class="back-btn" onclick="showWelcome()">← Voltar</button>
         </div>
 
+        <!-- Box de Registro -->
         <div class="auth-box" id="registerBox" style="display: none;">
-            <h2>📝 Cadastro</h2>
+            <div class="auth-header">
+                <h2>📝 Cadastro</h2>
+                <p class="auth-subtitle">Crie sua conta gratuitamente</p>
+            </div>
             <form id="registerForm">
                 <div class="form-group">
-                    <label for="registerName">Nome</label>
-                    <input type="text" id="registerName" required>
-                </div>
-                <div class="form-group">
                     <label for="registerUsername">Nome de Usuário</label>
-                    <input type="text" id="registerUsername" required>
+                    <input type="text" id="registerUsername" placeholder="Escolha um nome de usuário único" required>
+                    <small class="form-help">Seu nome será visível para outros usuários</small>
                 </div>
                 <div class="form-group">
                     <label for="registerPassword">Senha</label>
-                    <input type="password" id="registerPassword" required>
+                    <div class="password-input">
+                        <input type="password" id="registerPassword" placeholder="Crie uma senha forte" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('registerPassword')">👁️</button>
+                    </div>
+                    <small class="form-help">Use uma senha que você vai lembrar</small>
                 </div>
                 <div class="form-group">
                     <label for="registerConfirmPassword">Confirmar Senha</label>
-                    <input type="password" id="registerConfirmPassword" required>
+                    <div class="password-input">
+                        <input type="password" id="registerConfirmPassword" placeholder="Digite a senha novamente" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('registerConfirmPassword')">👁️</button>
+                    </div>
                 </div>
-                <button type="submit" class="auth-btn">Cadastrar</button>
+                <button type="submit" class="auth-btn">Criar Conta</button>
             </form>
-            <p>Já tem uma conta? <a href="#" id="showLogin">Faça login</a></p>
+            <p class="auth-links">
+                Já tem uma conta? <a href="#" onclick="showLogin()">Faça login</a>
+            </p>
+            <button class="back-btn" onclick="showWelcome()">← Voltar</button>
+        </div>
+
+        <!-- Mensagem de Sucesso -->
+        <div class="auth-box success-box" id="successBox" style="display: none;">
+            <div class="success-animation">✨</div>
+            <h2>Conta Criada!</h2>
+            <p class="success-message">Seu cadastro foi realizado com sucesso!</p>
+            <button class="auth-btn" onclick="showLogin()">Fazer Login</button>
         </div>
     </div>
     <script src="auth.js"></script>

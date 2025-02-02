@@ -11,19 +11,29 @@
 </head>
 <body>
     <div class="header-nav-container">
-        <header class="bounce-in">
-            <h1>👼 Angels Store ✨</h1>
-            <p class="subtitle wobble">Produtos celestiais para iluminar seu dia! ⭐</p>
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="Buscar produtos..." aria-label="Buscar produtos">
-                <button id="search-btn" aria-label="Buscar">🔍</button>
+        <div class="header-content">
+            <header class="bounce-in">
+                <h1>👼 Angels Store ✨</h1>
+            </header>
+            
+            <div class="search-and-categories">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Buscar produtos..." aria-label="Buscar produtos">
+                    <button id="search-btn" class="search-btn" aria-label="Buscar">🔍</button>
+                </div>
+                <nav aria-label="Categorias de produtos">
+                    <div class="category-buttons">
+                        <button class="category-btn active" data-category="todos" aria-pressed="true">✨ Todos</button>
+                        <button class="category-btn" data-category="free_fire" aria-pressed="false">🎮 Free Fire</button>
+                        <button class="category-btn" data-category="anime_fighters" aria-pressed="false">⚔️ Anime Fighters</button>
+                    </div>
+                </nav>
             </div>
-            <nav aria-label="Categorias de produtos">
-                <button class="category-btn active" data-category="todos" aria-pressed="true">✨ Todos</button>
-                <button class="category-btn" data-category="free_fire" aria-pressed="false">🎮 Free Fire</button>
-                <button class="category-btn" data-category="anime_fighters" aria-pressed="false">⚔️ Anime Fighters</button>
-            </nav>
-        </header>
+            
+            <div class="header-actions">
+                <button class="cart-btn" id="cart-toggle" aria-label="Abrir carrinho">🛒 <span class="cart-count" id="cart-count" aria-live="polite">0</span></button>
+            </div>
+        </div>
     </div>
     
     <button class="header-toggle" id="headerToggle" aria-label="Alternar visibilidade do cabeçalho">✖️</button>
@@ -48,10 +58,6 @@
             </button>
         </div>
     </div>
-
-    <button id="cart-toggle" class="cart-toggle" aria-label="Abrir carrinho">
-        🛒 <span class="cart-count" id="cart-count" aria-live="polite">0</span>
-    </button>
 
     <div class="preview-modal" id="preview-modal" role="dialog" aria-label="Visualização do produto">
         <button class="preview-close" id="preview-close" aria-label="Fechar visualização">✖️</button>
